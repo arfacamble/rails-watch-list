@@ -1,14 +1,26 @@
 <div class="container mt-3">
-  <h1><%= @list.name %></h1>
+  <% weird_name = @list.name.chars.map { |char| rand(1..10) > 5 ? char : char.upcase }.join %>
+  <div class="position-relative">
+    <h1>List: <%= weird_name %></h1>
+    <%= link_to 'BACK', lists_path, class: 'position-absolute btn btn-warning', style: 'top: 0px; right: 0px' %>
+    <%= link_to 'ADD A FILM', new_list_bookmark_path(@list), class: 'position-absolute btn btn-primary', style: 'top: 0px; right: 100px' %>
+  </div>
   <div class="film-card-container">
-    <% @films.each do |film| %>
+    <% @bookmarks.each do |bookmark| %>
+      <% film = bookmark.movie %>
       <div class="film-card">
         <%= image_tag film.poster_url, alt: "#{film.title}" %>
         <div class="film-details">
           <h3><%= film.title %></h3>
+          <p class="comment"><%= bookmark.comment %></p>
           <p><%= film.overview %></p>
         </div>
         <div class="rating"><%= film.rating %></div>
+        <%= link_to bookmark_path(bookmark),
+                    method: :delete,
+                    data: { confirm: "Sure about that?" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
       </div>
     <% end %>
   </div>

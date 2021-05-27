@@ -7,6 +7,10 @@
   margin: 16px;
   background-color: $hot-pink;
   overflow: hidden;
+  .comment {
+    font-size: 1em;
+    font-style: italic;
+  }
   .film-details {
     display: flex;
     flex-direction: column;
@@ -24,5 +28,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  i {
+    font-size: 2rem;
+    position: absolute;
+    top: 6px;
+    right: 60px;
+    color: #BC2C1A;
+    text-shadow: 0 0 3px white;
+  }
+  i:hover {
+    text-shadow: 0 0 3px black;
   }
 }
