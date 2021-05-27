@@ -4,6 +4,8 @@ class ListsController < ApplicationController
   end
 
   def show
+    @list = List.find params[:id]
+    @films = @list.movies
   end
 
   def new
