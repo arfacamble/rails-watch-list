@@ -3,7 +3,22 @@
   <div class="position-relative">
     <h1>List: <%= weird_name %></h1>
     <%= link_to 'BACK', lists_path, class: 'position-absolute btn btn-warning', style: 'top: 0px; right: 0px' %>
-    <%= link_to 'ADD A FILM', new_list_bookmark_path(@list), class: 'position-absolute btn btn-primary', style: 'top: 0px; right: 100px' %>
+    <div class="dropdown position-absolute" style="top: 0px; right: 90px">
+      <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        ADD A FILM
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <div class="new-bookmark">
+          <%= simple_form_for([@list, @bookmark]) do |f| %>
+            <%= f.input :comment %>
+            <%= f.association :movie, input_html: { class: 'select2 select2-width' } %>
+            <%= f.submit %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= link_to 'HOME', lists_path, class: 'btn btn-success position-absolute', style: 'top: 0px; right: 257px' %>
   </div>
   <div class="film-card-container">
     <% @bookmarks.each do |bookmark| %>

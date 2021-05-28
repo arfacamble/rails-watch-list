@@ -29,6 +29,9 @@
     justify-content: center;
     align-items: center;
   }
+  h3 {
+    width: 80%;
+  }
   i {
     font-size: 2rem;
     position: absolute;
@@ -39,5 +42,8 @@
   }
   i:hover {
     text-shadow: 0 0 3px black;
+  }
+  p {
+    max-height: 125px;
   }
 }
