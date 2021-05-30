@@ -1,6 +1,7 @@
 <div class="container p-5 m-5">
   <%= simple_form_for(@list) do |f| %>
     <%= f.input :name %>
+    <%= f.input :photo, as: :file %>
     <%= f.submit %>
   <% end %>
 </div>

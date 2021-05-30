@@ -3,22 +3,32 @@
   <div class="position-relative">
     <h1>List: <%= weird_name %></h1>
     <%= link_to 'BACK', lists_path, class: 'position-absolute btn btn-warning', style: 'top: 0px; right: 0px' %>
-    <div class="dropdown position-absolute" style="top: 0px; right: 90px">
-      <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        ADD A FILM
-      </a>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary position-absolute" data-toggle="modal" data-target="#new-bookmark-modal" style="top: 0px; right: 94px">
+      ADD A FILM
+    </button>
 
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <div class="new-bookmark">
-          <%= simple_form_for([@list, @bookmark]) do |f| %>
-            <%= f.input :comment %>
-            <%= f.association :movie, input_html: { class: 'select2 select2-width' } %>
-            <%= f.submit %>
-          <% end %>
+    <!-- Modal -->
+    <div class="modal fade" id="new-bookmark-modal" tabindex="-1" aria-labelledby="new-bookmark-modal-label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add a Film to <%= @list.name.capitalize %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= simple_form_for([@list, @bookmark]) do |f| %>
+              <%= f.input :comment %>
+              <%= f.association :movie, input_html: { class: 'select2 select2-width' } %>
+              <%= f.submit class: 'btn btn-primary', value: 'Add Film'%>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-    <%= link_to 'HOME', lists_path, class: 'btn btn-success position-absolute', style: 'top: 0px; right: 257px' %>
+    <%= link_to 'HOME', lists_path, class: 'btn btn-success position-absolute', style: 'top: 0px; right: 246px' %>
   </div>
   <div class="film-card-container">
     <% @bookmarks.each do |bookmark| %>
