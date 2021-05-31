@@ -19,3 +19,15 @@
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
+
+.banner-show {
+  h1 {
+    margin: 0 32px 32px 0;
+  }
+  a {
+    margin-right: 24px;
+  }
+  .banner-show-title {
+    font-size: 48px;
+  }
+}

@@ -1,35 +1,39 @@
-<div class="container mt-3">
-  <% weird_name = @list.name.chars.map { |char| rand(1..10) > 5 ? char : char.upcase }.join %>
-  <div class="position-relative">
-    <h1>List: <%= weird_name %></h1>
-    <%= link_to 'BACK', lists_path, class: 'position-absolute btn btn-warning', style: 'top: 0px; right: 0px' %>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary position-absolute" data-toggle="modal" data-target="#new-bookmark-modal" style="top: 0px; right: 94px">
-      ADD A FILM
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="new-bookmark-modal" tabindex="-1" aria-labelledby="new-bookmark-modal-label" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add a Film to <%= @list.name.capitalize %></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <%= simple_form_for([@list, @bookmark]) do |f| %>
-              <%= f.input :comment %>
-              <%= f.association :movie, input_html: { class: 'select2 select2-width' } %>
-              <%= f.submit class: 'btn btn-primary', value: 'Add Film'%>
-            <% end %>
+<% img_url = @list.photo.attached? ? cl_image_path(@list.photo.key) : "https://source.unsplash.com/1080x720/?#{@list.name}" %>
+<div class="banner banner-show d-flex flex-column justify-content-center" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= img_url %>);">
+  <div class="container">
+    <% weird_name = @list.name.chars.map { |char| rand(1..10) > 5 ? char : char.upcase }.join %>
+    <h1>WatchList: <span class="banner-show-title"><%= weird_name %></span></h1>
+    <div class="show-page-buttons">
+      <%= link_to 'BACK', lists_path, class: 'btn btn-success' %>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-bookmark-modal">
+        ADD A FILM
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="new-bookmark-modal" tabindex="-1" aria-labelledby="new-bookmark-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add a Film to <%= @list.name.capitalize %></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= simple_form_for([@list, @bookmark]) do |f| %>
+                <%= f.input :comment %>
+                <%= f.association :movie, input_html: { class: 'select2 select2-width' } %>
+                <%= f.submit class: 'btn btn-primary', value: 'Add Film'%>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <%= link_to 'HOME', lists_path, class: 'btn btn-success position-absolute', style: 'top: 0px; right: 246px' %>
   </div>
+</div>
+
+<div class="container mt-3">
   <div class="film-card-container">
     <% @bookmarks.each do |bookmark| %>
       <% film = bookmark.movie %>
