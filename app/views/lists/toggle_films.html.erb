@@ -1,8 +1,8 @@
 <div class="container mt-4">
   <h1><%= @list.name %></h1>
-  <div class="toggle-container">
+  <div class="toggle-container d-flex align-items-center">
     <div class="toggle-film-container" style="width: 70%">
-      <% film = @films.first %>
+      <% film = @films_to_add.first %>
       <div class="film-card">
         <%= image_tag film.poster_url, alt: "#{film.title}" %>
         <div class="film-details">
@@ -11,8 +11,11 @@
         <div class="rating"><%= film.rating %></div>
       </div>
     </div>
-    <div class="toggler-container">
-
+    <div class="toggler-container d-flex align-items-center justify-content-center">
+      <div class="switch-button">
+        <input class="switch-button-checkbox" type="checkbox"></input>
+        <label class="switch-button-label" for=""><span class="switch-button-label-span">In</span></label>
+      </div>
     </div>
   </div>
 </div>

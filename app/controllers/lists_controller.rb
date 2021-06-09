@@ -25,9 +25,12 @@ class ListsController < ApplicationController
   end
 
   def toggle_films
-    @films = Movie.includes(:bookmarks)
-                  .where.not(bookmarks: { list_id: @list.id, active: true })
-                  .limit(5)
+    @films_to_add = Movie.includes(:bookmarks)
+                         .where.not(bookmarks: { list_id: @list.id, active: true })
+                         .limit(2)
+    @films_to_remove = Movie.includes(:bookmarks)
+                            .where.not(bookmarks: { list_id: @list.id, active: true })
+                            .limit(2)
   end
 
   private
