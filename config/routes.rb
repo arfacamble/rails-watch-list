@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:new, :create]
   end
   resources :bookmarks, only: :destroy
+  get 'lists/:id/togglefilms', to: 'lists#togglefilms'
+  patch 'lists/:list_id/togglefilms/:film_id', to: 'bookmarks#toggle'
 end
