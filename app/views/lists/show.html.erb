@@ -5,9 +5,10 @@
     <h1>WatchList: <span class="banner-show-title"><%= weird_name %></span></h1>
     <div class="show-page-buttons">
       <%= link_to 'BACK', lists_path, class: 'btn btn-success' %>
+      <%= link_to 'ADD RANDOM FILMS', toggle_path, class: 'btn btn-danger' %>
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-bookmark-modal">
-        ADD A FILM
+        ADD ANY FILM
       </button>
       <!-- Modal -->
       <div class="modal fade" id="new-bookmark-modal" tabindex="-1" aria-labelledby="new-bookmark-modal-label" aria-hidden="true">

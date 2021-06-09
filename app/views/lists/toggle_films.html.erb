@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <h1><%= @list.name %></h1>
+  <div class="toggle-container">
+    <div class="toggle-film-container" style="width: 70%">
+      <% film = @films.first %>
+      <div class="film-card">
+        <%= image_tag film.poster_url, alt: "#{film.title}" %>
+        <div class="film-details">
+          <h3><%= film.title %></h3>
+        </div>
+        <div class="rating"><%= film.rating %></div>
+      </div>
+    </div>
+    <div class="toggler-container">
+
+    </div>
+  </div>
+</div>

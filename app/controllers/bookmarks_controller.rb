@@ -9,6 +9,7 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new(bookmark_params)
     @bookmark.movie = Movie.find(params[:bookmark][:movie_id])
     @bookmark.list = @list
+    @bookmark.active = true
     if @bookmark.save
       redirect_to list_path(@list)
     else
