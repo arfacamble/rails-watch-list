@@ -24,6 +24,14 @@ class BookmarksController < ApplicationController
     redirect_to list_path(list)
   end
 
+  def toggle
+    list = List.find params[:list_id]
+    film = Movie.find params[:film_id]
+    bookmark = Bookmark.where(list: list, movie: film).first
+    bookmark.active ? bookmark.update(active: false) : bookmark.update(active: true)
+    redirect_to toggle_path(list)
+  end
+
   private
 
   def bookmark_params

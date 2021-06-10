@@ -25,12 +25,15 @@ class ListsController < ApplicationController
   end
 
   def toggle_films
-    @films_to_add = Movie.includes(:bookmarks)
-                         .where.not(bookmarks: { list_id: @list.id, active: true })
-                         .limit(2)
-    @films_to_remove = Movie.includes(:bookmarks)
-                            .where.not(bookmarks: { list_id: @list.id, active: true })
-                            .limit(2)
+    @films = Movie.first(5)
+    @bookmarks_to_toggle = []
+    @films.each do |film|
+      if (bookmark = Bookmark.where(movie: film, list: @list).first)
+        @bookmarks_to_toggle << bookmark
+      else
+        @bookmarks_to_toggle << Bookmark.create(movie: film, list: @list, active: false, comment: 'Created by toggle')
+      end
+    end
   end
 
   private
