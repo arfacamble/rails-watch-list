@@ -14,8 +14,9 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import { initSelect2 } from '../components/init_select2';
+import { initFilmToggler } from '../components/init_film_toggler';
 
 document.addEventListener("turbolinks:load", function() {
-  console.log('init select2')
   initSelect2();
+  initFilmToggler();
 });
