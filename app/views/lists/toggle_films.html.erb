@@ -1,5 +1,6 @@
 <div class="container mt-4">
   <h1><%= @list.name %></h1>
+
   <div class="toggle-container d-flex align-items-center">
     <div class="toggle-film-container" style="width: 70%">
       <% film = @films_to_add.first %>
@@ -18,4 +19,29 @@
       </div>
     </div>
   </div>
+
+  <div class="toggle-container d-flex align-items-center">
+    <div class="toggle-film-container" style="width: 70%">
+      <% film = @films_to_add.second %>
+      <div class="film-card">
+        <%= image_tag film.poster_url, alt: "#{film.title}" %>
+        <div class="film-details">
+          <h3><%= film.title %></h3>
+        </div>
+        <div class="rating"><%= film.rating %></div>
+      </div>
+    </div>
+    <div class="toggler-container d-flex align-items-center justify-content-center">
+      <%#= form_tag(controller: 'bookmarks', action: "/lists/#{@list.id}/togglefilms/#{film.id}", method: 'patch') do %>
+      <%= form_tag(toggle_update_path(@list, film), method: 'patch', class: "switch-button") do %>
+        <%= check_box_tag :toggler, film.id, checked = true, class: "switch-button-checkbox" %>
+        <%= label_tag film.id, nil, class: "switch-button-label" do %><span class="switch-button-label-span">In</span><% end %>
+      <% end %>
+<!--       <div class="switch-button">
+        <input class="switch-button-checkbox" type="checkbox"></input>
+        <label class="switch-button-label" for=""><span class="switch-button-label-span">In</span></label>
+      </div>
+ -->    </div>
+  </div>
+
 </div>
