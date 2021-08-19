@@ -8,7 +8,7 @@ class ListsController < ApplicationController
 
   def show
     @bookmark = Bookmark.new
-    @bookmarks = @list.bookmarks
+    @bookmarks = @list.bookmarks.where(active: true)
   end
 
   def new

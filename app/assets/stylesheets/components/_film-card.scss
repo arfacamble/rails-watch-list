@@ -11,6 +11,7 @@
   .comment {
     font-size: 1em;
     font-style: italic;
+    margin-bottom: 0.5rem;
   }
   .film-details {
     display: flex;
@@ -29,6 +30,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .summary {
+    overflow: scroll;
+    margin-bottom: 0;
   }
   h3 {
     width: 80%;

@@ -15,7 +15,7 @@
       <div class="toggler-container d-flex align-items-center justify-content-center">
         <%= form_tag(toggle_update_path(@list, film), method: 'patch', class: "switch-button", remote: true) do %>
           <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <%= check_box_tag :toggler, film.id, checked = bookmark.active, class: "switch-button-checkbox" %>
+          <%= check_box_tag :toggler, film.id, checked = !bookmark.active, class: "switch-button-checkbox" %>
           <%= label_tag film.id, nil, class: "switch-button-label" do %><span class="switch-button-label-span">In</span><% end %>
         <% end %>
       </div>
